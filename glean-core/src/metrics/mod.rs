@@ -17,6 +17,7 @@ mod datetime;
 mod denominator;
 mod event;
 mod experiment;
+mod recorded_experiment;
 mod jwe;
 pub(crate) mod labeled;
 mod memory_distribution;
@@ -46,11 +47,8 @@ pub use self::datetime::DatetimeMetric;
 pub use self::denominator::DenominatorMetric;
 pub use self::event::EventMetric;
 pub(crate) use self::experiment::ExperimentMetric;
+pub use recorded_experiment::RecordedExperiment;
 pub use crate::histogram::HistogramType;
-// Note: only expose RecordedExperimentData to tests in
-// the next line, so that glean-core\src\lib.rs won't fail to build.
-#[cfg(test)]
-pub(crate) use self::experiment::RecordedExperimentData;
 pub use self::jwe::JweMetric;
 pub use self::labeled::LabeledMetric;
 pub use self::memory_distribution::MemoryDistributionMetric;
@@ -104,7 +102,7 @@ pub enum Metric {
     /// A datetime metric. See [`DatetimeMetric`] for more information.
     Datetime(DateTime<FixedOffset>, TimeUnit),
     /// An experiment metric. See `ExperimentMetric` for more information.
-    Experiment(experiment::RecordedExperimentData),
+    Experiment(recorded_experiment::RecordedExperiment),
     /// A quantity metric. See [`QuantityMetric`] for more information.
     Quantity(i64),
     /// A string metric. See [`StringMetric`] for more information.
