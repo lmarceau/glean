@@ -49,7 +49,7 @@ use crate::core::Glean;
 use crate::core_metrics::ClientInfoMetrics;
 pub use crate::error::{Error, ErrorKind, Result};
 pub use crate::error_recording::{test_get_num_recorded_errors, ErrorType};
-use crate::metrics::RecordedExperiment;
+pub use crate::metrics::{CounterMetric, RecordedExperiment};
 
 const GLEAN_VERSION: &str = env!("CARGO_PKG_VERSION");
 const GLEAN_SCHEMA_VERSION: u32 = 1;
@@ -578,6 +578,13 @@ pub fn glean_handle_client_inactive() {
         state.callbacks.trigger_upload();
     })
 }
+
+#[allow(missing_docs)]
+mod ffi {
+    use super::*;
+    uniffi_macros::include_scaffolding!("glean");
+}
+pub use ffi::*;
 
 // Split unit tests to a separate file, to reduce the file of this one.
 #[cfg(test)]
