@@ -115,12 +115,12 @@ where
 #[derive(Debug)]
 pub struct Glean {
     upload_enabled: bool,
-    data_store: Option<Database>,
+    pub(crate) data_store: Option<Database>,
     event_data_store: EventDatabase,
-    core_metrics: CoreMetrics,
-    pub additional_metrics: AdditionalMetrics,
-    database_metrics: DatabaseMetrics,
-    internal_pings: InternalPings,
+    pub(crate) core_metrics: CoreMetrics,
+    pub(crate) additional_metrics: AdditionalMetrics,
+    pub(crate) database_metrics: DatabaseMetrics,
+    pub(crate) internal_pings: InternalPings,
     data_path: PathBuf,
     application_id: String,
     ping_registry: HashMap<String, PingType>,
@@ -129,7 +129,7 @@ pub struct Glean {
     is_first_run: bool,
     upload_manager: PingUploadManager,
     debug: DebugOptions,
-    pub app_build: String,
+    pub(crate) app_build: String,
     schedule_metrics_pings: bool,
 }
 
@@ -552,7 +552,7 @@ impl Glean {
             .unwrap_or_else(|| String::from(""))
     }
 
-    fn make_path(&self, ping_name: &str, doc_id: &str) -> String {
+    pub(crate) fn make_path(&self, ping_name: &str, doc_id: &str) -> String {
         format!(
             "/submit/{}/{}/{}/{}",
             self.get_application_id(),
