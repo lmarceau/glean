@@ -765,7 +765,7 @@ impl Glean {
 
     /// Whether or not this is the first run on this profile.
     pub fn is_first_run(&self) -> bool {
-        false
+        self.is_first_run
     }
 
     /// Sets a debug view tag.
@@ -862,7 +862,7 @@ impl Glean {
     /// `true`, then Glean knows it did not exit cleanly and can implement
     /// coping mechanisms (e.g. sending a `baseline` ping).
     pub fn set_dirty_flag(&self, new_value: bool) {
-        let _ = new_value;
+        self.get_dirty_bit_metric().set(self, new_value);
     }
 
     /// **This is not meant to be used directly.**
