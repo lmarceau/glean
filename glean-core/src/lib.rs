@@ -15,10 +15,9 @@
 
 use std::collections::HashMap;
 use std::sync::atomic::{AtomicBool, Ordering};
-
-use once_cell::sync::Lazy;
-use once_cell::sync::OnceCell;
 use std::sync::Mutex;
+
+use once_cell::sync::{Lazy, OnceCell};
 use uuid::Uuid;
 
 mod common_metric_data;
