@@ -153,10 +153,15 @@ impl ExperimentMetric {
 
             truncated_extras.insert(truncated_key, truncated_value);
         }
+        let truncated_extras = if truncated_extras.len() > 0 {
+            Some(truncated_extras)
+        } else {
+            None
+        };
 
         let value = Metric::Experiment(RecordedExperiment {
             branch: truncated_branch,
-            extra: Some(truncated_extras),
+            extra: truncated_extras,
         });
         glean.storage().record(glean, &self.meta, &value)
     }

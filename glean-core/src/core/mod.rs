@@ -81,8 +81,8 @@ where
 /// ping.
 ///
 /// ```rust,no_run
-/// # use glean_core::{Glean, Configuration, CommonMetricData, metrics::*};
-/// let cfg = Configuration {
+/// # use glean_core::{Glean, InternalConfiguration, CommonMetricData, metrics::*};
+/// let cfg = InternalConfiguration {
 ///     data_path: "/tmp/glean".into(),
 ///     application_id: "glean.sample.app".into(),
 ///     language_binding_name: "Rust".into(),
@@ -103,7 +103,7 @@ where
 ///     ..Default::default()
 /// });
 ///
-/// call_counter.add(&glean, 1);
+/// call_counter.add_sync(&glean, 1);
 ///
 /// glean.submit_ping(&ping, None);
 /// ```
@@ -127,10 +127,10 @@ pub struct Glean {
     start_time: DateTime<FixedOffset>,
     max_events: u32,
     is_first_run: bool,
-    upload_manager: PingUploadManager,
+    pub(crate) upload_manager: PingUploadManager,
     debug: DebugOptions,
     pub(crate) app_build: String,
-    schedule_metrics_pings: bool,
+    pub(crate) schedule_metrics_pings: bool,
 }
 
 impl Glean {

@@ -107,7 +107,7 @@ fn limits_on_experiments_extras_are_applied_correctly() {
     let experiment_data = experiment_data.unwrap();
     assert_eq!(
         20,
-        experiment_data.extra.unwrap().len(),
+        experiment_data.extra.as_ref().unwrap().len(),
         "Experiments extra must be less than max length"
     );
 
@@ -660,7 +660,7 @@ fn test_change_metric_type_runtime() {
         "Expected properly deserialized string"
     );
 
-    let mut timespan_metric = TimespanMetric::new(
+    let timespan_metric = TimespanMetric::new(
         CommonMetricData {
             name: metric_name.into(),
             category: metric_category.into(),
