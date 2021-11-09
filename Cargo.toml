@@ -5,7 +5,6 @@ members = [
   "glean-core/ffi",
   "glean-core/rlb",
   "glean-core/bundle",
-  "glean-core/uniffi",
 ]
 
 default-members = [
