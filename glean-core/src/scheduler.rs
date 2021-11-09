@@ -9,9 +9,9 @@
 //! [the docs](https://mozilla.github.io/glean/book/user/pings/metrics.html#scheduling)
 
 use crate::metrics::{DatetimeMetric, StringMetric, TimeUnit};
-use crate::{CommonMetricData, Glean, Lifetime};
 use crate::storage::INTERNAL_STORAGE;
 use crate::util::local_now_with_offset;
+use crate::{CommonMetricData, Glean, Lifetime};
 use chrono::prelude::*;
 use chrono::Duration;
 use once_cell::sync::Lazy;

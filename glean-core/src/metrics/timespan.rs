@@ -44,7 +44,7 @@ impl TimespanMetric {
         Self {
             meta: Arc::new(meta),
             time_unit,
-            start_time: Arc::new(RwLock::new(None))
+            start_time: Arc::new(RwLock::new(None)),
         }
     }
 
@@ -121,7 +121,6 @@ impl TimespanMetric {
             );
             return;
         }
-
 
         let start_time = lock.take().unwrap();
         let duration = match stop_time.checked_sub(start_time) {

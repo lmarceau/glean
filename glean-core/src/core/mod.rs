@@ -8,17 +8,16 @@ use uuid::Uuid;
 
 use crate::database::Database;
 use crate::debug::DebugOptions;
+use crate::event_database::EventDatabase;
+use crate::internal_metrics::{AdditionalMetrics, CoreMetrics, DatabaseMetrics};
+use crate::internal_pings::InternalPings;
 use crate::metrics::{self, ExperimentMetric, Metric, MetricType, PingType, RecordedExperiment};
 use crate::ping::PingMaker;
 use crate::storage::{StorageManager, INTERNAL_STORAGE};
 use crate::upload::{PingUploadManager, PingUploadTask, UploadResult};
 use crate::util::{local_now_with_offset, sanitize_application_id};
-use crate::event_database::EventDatabase;
-use crate::internal_pings::InternalPings;
-use crate::internal_metrics::{AdditionalMetrics, CoreMetrics, DatabaseMetrics};
 use crate::{
-    scheduler, system, CommonMetricData,
-    ErrorKind, InternalConfiguration, Lifetime, Result,
+    scheduler, system, CommonMetricData, ErrorKind, InternalConfiguration, Lifetime, Result,
     DEFAULT_MAX_EVENTS, GLEAN_SCHEMA_VERSION, GLEAN_VERSION, KNOWN_CLIENT_ID,
 };
 

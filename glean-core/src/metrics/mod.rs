@@ -17,7 +17,6 @@ mod datetime;
 mod denominator;
 mod event;
 mod experiment;
-mod recorded_experiment;
 mod jwe;
 pub(crate) mod labeled;
 mod memory_distribution;
@@ -25,6 +24,7 @@ mod memory_unit;
 mod ping;
 mod quantity;
 mod rate;
+mod recorded_experiment;
 mod string;
 mod string_list;
 mod time_unit;
@@ -47,8 +47,6 @@ pub use self::datetime::DatetimeMetric;
 pub use self::denominator::DenominatorMetric;
 pub use self::event::EventMetric;
 pub(crate) use self::experiment::ExperimentMetric;
-pub use recorded_experiment::RecordedExperiment;
-pub use crate::histogram::HistogramType;
 pub use self::jwe::JweMetric;
 pub use self::labeled::LabeledMetric;
 pub use self::memory_distribution::MemoryDistributionMetric;
@@ -64,6 +62,8 @@ pub use self::timing_distribution::TimerId;
 pub use self::timing_distribution::TimingDistributionMetric;
 pub use self::url::UrlMetric;
 pub use self::uuid::UuidMetric;
+pub use crate::histogram::HistogramType;
+pub use recorded_experiment::RecordedExperiment;
 
 /// A snapshot of all buckets and the accumulated sum of a distribution.
 #[derive(Debug, Serialize)]
@@ -131,12 +131,18 @@ pub trait MetricType {
     fn meta(&self) -> &CommonMetricData;
 
     /// Create a new metric from this with a new name.
-    fn with_name(&self, _name: String) -> Self where Self: Sized {
+    fn with_name(&self, _name: String) -> Self
+    where
+        Self: Sized,
+    {
         unimplemented!()
     }
 
     /// Create a new metric from this with a specific label.
-    fn with_dynamic_label(&self, _label: String) -> Self where Self: Sized {
+    fn with_dynamic_label(&self, _label: String) -> Self
+    where
+        Self: Sized,
+    {
         unimplemented!()
     }
 

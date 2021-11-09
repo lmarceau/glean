@@ -45,7 +45,11 @@ fn experiment_id_and_branch_get_truncated_if_too_long() {
     let very_long_branch_id = "test-branch-id".repeat(10);
 
     // Mark the experiment as active.
-    glean.set_experiment_active(very_long_id.clone(), very_long_branch_id.clone(), HashMap::new());
+    glean.set_experiment_active(
+        very_long_id.clone(),
+        very_long_branch_id.clone(),
+        HashMap::new(),
+    );
 
     // Generate the expected id and branch strings.
     let mut expected_id = very_long_id;
@@ -54,7 +58,9 @@ fn experiment_id_and_branch_get_truncated_if_too_long() {
     expected_branch_id.truncate(100);
 
     assert!(
-        glean.test_get_experiment_data(expected_id.clone()).is_some(),
+        glean
+            .test_get_experiment_data(expected_id.clone())
+            .is_some(),
         "An experiment with the truncated id should be available"
     );
 
@@ -92,7 +98,9 @@ fn limits_on_experiments_extras_are_applied_correctly() {
 
     // Make sure it is active
     assert!(
-        glean.test_get_experiment_data(experiment_id.clone()).is_some(),
+        glean
+            .test_get_experiment_data(experiment_id.clone())
+            .is_some(),
         "An experiment with the truncated id should be available"
     );
 
@@ -142,7 +150,9 @@ fn experiments_status_is_correctly_toggled() {
 
     // Check that the experiment is marekd as active.
     assert!(
-        glean.test_get_experiment_data(experiment_id.clone()).is_some(),
+        glean
+            .test_get_experiment_data(experiment_id.clone())
+            .is_some(),
         "The experiment must be marked as active."
     );
 

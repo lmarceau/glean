@@ -20,8 +20,8 @@ pub mod pings {
             vec![
                 "background".to_string(),
                 "dirty_startup".to_string(),
-                "foreground".to_string()
-            ]
+                "foreground".to_string(),
+            ],
         )
     });
 
@@ -36,8 +36,8 @@ pub mod pings {
                 "reschedule".to_string(),
                 "today".to_string(),
                 "tomorrow".to_string(),
-                "upgrade".to_string()
-            ]
+                "upgrade".to_string(),
+            ],
         )
     });
 
@@ -50,8 +50,8 @@ pub mod pings {
             vec![
                 "background".to_string(),
                 "max_capacity".to_string(),
-                "startup".to_string()
-            ]
+                "startup".to_string(),
+            ],
         )
     });
 }
